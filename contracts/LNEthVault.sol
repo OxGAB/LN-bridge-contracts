@@ -33,7 +33,7 @@ contract LNEthVault is Pausable, Ownable, AccessControlEnumerable {
         emit SendToEth(msg.sender, to, tokenId);
     }
 
-    function receiveFromEth(address from, uint256 tokenId) external onlyOwner {
-        LongNecksNFT.transferFrom(address(this), from, tokenId);
+    function receiveFromEth(address to, uint256 tokenId) external onlyKeeper {
+        LongNecksNFT.transferFrom(address(this), to, tokenId);
     }
 }
