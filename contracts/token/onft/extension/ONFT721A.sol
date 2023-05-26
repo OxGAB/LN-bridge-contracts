@@ -17,23 +17,50 @@ import "../ONFT721Core.sol";
 // NOTE: this ONFT contract has no public minting logic.
 // must implement your own minting logic in child contract
 contract ONFT721A is ONFT721Core, ERC721A, ERC721A__IERC721Receiver {
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint256 _minGasToTransferAndStore,
+        address _lzEndpoint
+    )
+        ERC721A(_name, _symbol)
+        ONFT721Core(_minGasToTransferAndStore, _lzEndpoint)
+    {}
 
-    constructor(string memory _name, string memory _symbol, uint256 _minGasToTransferAndStore, address _lzEndpoint) ERC721A(_name, _symbol) ONFT721Core(_minGasToTransferAndStore, _lzEndpoint) {}
-
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ONFT721Core, ERC721A) returns (bool) {
-        return interfaceId == type(IONFT721Core).interfaceId || super.supportsInterface(interfaceId);
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(ONFT721Core, ERC721A) returns (bool) {
+        return
+            interfaceId == type(IONFT721Core).interfaceId ||
+            super.supportsInterface(interfaceId);
     }
 
-    function _debitFrom(address _from, uint16, bytes memory, uint _tokenId) override(ONFT721Core) internal virtual {
+    function _debitFrom(
+        address _from,
+        uint16,
+        bytes memory,
+        uint _tokenId
+    ) internal virtual override(ONFT721Core) {
         safeTransferFrom(_from, address(this), _tokenId);
     }
 
-    function _creditTo(uint16, address _toAddress, uint _tokenId) override(ONFT721Core) internal virtual {
-        require(_exists(_tokenId) && ERC721A.ownerOf(_tokenId) == address(this));
+    function _creditTo(
+        uint16,
+        address _toAddress,
+        uint _tokenId
+    ) internal virtual override(ONFT721Core) {
+        require(
+            _exists(_tokenId) && ERC721A.ownerOf(_tokenId) == address(this)
+        );
         safeTransferFrom(address(this), _toAddress, _tokenId);
     }
 
-    function onERC721Received(address, address, uint, bytes memory) public virtual override returns (bytes4) {
+    function onERC721Received(
+        address,
+        address,
+        uint,
+        bytes memory
+    ) public virtual override returns (bytes4) {
         return ERC721A__IERC721Receiver.onERC721Received.selector;
     }
 }

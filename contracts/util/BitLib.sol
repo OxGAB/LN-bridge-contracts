@@ -5,18 +5,27 @@ pragma solidity >=0.5.0;
 // countSetBits based off: https://en.wikipedia.org/wiki/Hamming_weight
 
 library BitLib {
+    uint256 constant m1 =
+        0x5555555555555555555555555555555555555555555555555555555555555555;
+    uint256 constant m2 =
+        0x3333333333333333333333333333333333333333333333333333333333333333;
+    uint256 constant m4 =
+        0x0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F;
+    uint256 constant m8 =
+        0x00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF;
+    uint256 constant m16 =
+        0x0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF;
+    uint256 constant m32 =
+        0x00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF;
+    uint256 constant m64 =
+        0x0000000000000000FFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF;
+    uint256 constant m128 =
+        0x00000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
 
-    uint256 constant m1  = 0x5555555555555555555555555555555555555555555555555555555555555555;
-    uint256 constant m2  = 0x3333333333333333333333333333333333333333333333333333333333333333;
-    uint256 constant m4  = 0x0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F;
-    uint256 constant m8  = 0x00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF;
-    uint256 constant m16 = 0x0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF;
-    uint256 constant m32 = 0x00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF00000000FFFFFFFF;
-    uint256 constant m64 = 0x0000000000000000FFFFFFFFFFFFFFFF0000000000000000FFFFFFFFFFFFFFFF;
-    uint256 constant m128= 0x00000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;
-
-    function mostSignificantBitPosition(uint256 x) internal pure returns (uint8 r) {
-        if(x == 0) return 0;
+    function mostSignificantBitPosition(
+        uint256 x
+    ) internal pure returns (uint8 r) {
+        if (x == 0) return 0;
 
         if (x >= 0x100000000000000000000000000000000) {
             x >>= 128;
@@ -50,10 +59,10 @@ library BitLib {
     }
 
     function countSetBits(uint x) internal pure returns (uint256) {
-        x = (x & m1 ) + ((x >>  1) & m1 );
-        x = (x & m2 ) + ((x >>  2) & m2 );
-        x = (x & m4 ) + ((x >>  4) & m4 );
-        x = (x & m8 ) + ((x >>  8) & m8 );
+        x = (x & m1) + ((x >> 1) & m1);
+        x = (x & m2) + ((x >> 2) & m2);
+        x = (x & m4) + ((x >> 4) & m4);
+        x = (x & m8) + ((x >> 8) & m8);
         x = (x & m16) + ((x >> 16) & m16);
         x = (x & m32) + ((x >> 32) & m32);
         x = (x & m64) + ((x >> 64) & m64);

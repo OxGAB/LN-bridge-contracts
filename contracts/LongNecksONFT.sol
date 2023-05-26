@@ -3,12 +3,11 @@ pragma solidity ^0.8.20;
 
 import {ERC721A} from "erc721a/contracts/ERC721A.sol";
 import {IERC721A} from "erc721a/contracts/IERC721A.sol";
-import {ERC2981} from '@openzeppelin/contracts/token/common/ERC2981.sol';
-import {ONFT721A} from './token/onft/extension/ONFT721A.sol';
-import {DefaultOperatorFilterer} from 'operator-filter-registry/src/DefaultOperatorFilterer.sol';
+import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
+import {ONFT721A} from "./token/onft/extension/ONFT721A.sol";
+import {DefaultOperatorFilterer} from "operator-filter-registry/src/DefaultOperatorFilterer.sol";
 
 contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
-
     uint96 public constant ROYALTY_FEE = 500; // 5% of every sale
 
     string private baseURI;
@@ -25,7 +24,7 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         uint256 _minGas,
         address royaltyReceiver,
         address _owner
-    ) ONFT721A('Long Necks ONFT', 'LN', _minGas, _layerZeroEndpoint) {
+    ) ONFT721A("Long Necks ONFT", "LN", _minGas, _layerZeroEndpoint) {
         baseURI = __baseURI;
         _setDefaultRoyalty(royaltyReceiver, ROYALTY_FEE);
 

@@ -197,9 +197,14 @@ contract LongNecksEthVault is Ownable, NonblockingLzApp, ERC165 {
             );
     }
 
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165) returns (bool) {
-        return interfaceId == type(IONFT721Core).interfaceId || super.supportsInterface(interfaceId);
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(ERC165) returns (bool) {
+        return
+            interfaceId == type(IONFT721Core).interfaceId ||
+            super.supportsInterface(interfaceId);
     }
+
     function _send(
         address _from,
         uint16 _dstChainId,
