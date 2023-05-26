@@ -89,50 +89,37 @@ contract LongNecksEthVault is Ownable, ONFT721Core {
         emit SendToEth(msg.sender, _toAddress, _tokenIds);
     }
 
-    function _receiveFromEth(
-        address from,
-        address to,
-        uint256 tokenId
-    ) internal {
-        (bool success, ) = address(LongNecksNFT).call(
-            abi.encodeWithSelector(
-                LongNecksNFT.transferFrom.selector,
-                address(this),
-                to,
-                tokenId
-            )
+    function _nonblockingLzReceive(
+        uint16 _srcChainId,
+        bytes memory _srcAddress,
+        uint64 /*_nonce*/,
+        bytes memory _payload
+    ) internal override {
+        // decode and load the toAddress
+        (bytes memory toAddressBytes, uint[] memory tokenIds) = abi.decode(
+            _payload,
+            (bytes, uint[])
         );
-        if (!success)
-            revert LongNecksEthVault__TransferFromFailed(
-                address(this),
-                to,
-                tokenId
-            );
-        emit ReceiveFromEth(from, to, _toSingletonArray(tokenId));
-    }
 
-    function _receiveBatchFromEth(
-        address from,
-        address to,
-        uint256[] memory tokenIds
-    ) internal {
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            (bool success, ) = address(LongNecksNFT).call(
-                abi.encodeWithSelector(
-                    LongNecksNFT.transferFrom.selector,
-                    address(this),
-                    to,
-                    tokenIds[i]
-                )
-            );
-            if (!success)
-                revert LongNecksEthVault__TransferFromFailed(
-                    address(this),
-                    to,
-                    tokenIds[i]
-                );
+        address toAddress;
+        assembly {
+            toAddress := mload(add(toAddressBytes, 20))
         }
-        emit ReceiveFromEth(from, to, tokenIds);
+
+        uint nextIndex = _creditTill(_srcChainId, toAddress, 0, tokenIds);
+        if (nextIndex < tokenIds.length) {
+            // not enough gas to complete transfers, store to be cleared in another tx
+            bytes32 hashedPayload = keccak256(_payload);
+            storedCredits[hashedPayload] = StoredCredit(
+                _srcChainId,
+                toAddress,
+                nextIndex,
+                true
+            );
+            emit CreditStored(hashedPayload, _payload);
+        }
+
+        emit ReceiveFromEth(_bytesToAddress(_srcAddress), toAddress, tokenIds);
     }
 
     function onERC721Received(
@@ -188,6 +175,14 @@ contract LongNecksEthVault is Ownable, ONFT721Core {
                 _toAddress,
                 _tokenId
             );
+    }
+
+    function _bytesToAddress(
+        bytes memory bys
+    ) private pure returns (address addr) {
+        assembly {
+            addr := mload(add(bys, 20))
+        }
     }
 
     function sendFrom(
