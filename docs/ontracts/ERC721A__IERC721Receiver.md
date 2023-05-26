@@ -1,12 +1,6 @@
-# ERC721A__IERC721Receiver
+# ERC721A\_\_IERC721Receiver
 
-
-
-
-
-
-
-*Interface of ERC721 token receiver.*
+_Interface of ERC721 token receiver._
 
 ## Methods
 
@@ -16,25 +10,17 @@
 function onERC721Received(address operator, address from, uint256 tokenId, bytes data) external nonpayable returns (bytes4)
 ```
 
-
-
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| operator | address | undefined |
-| from | address | undefined |
-| tokenId | uint256 | undefined |
-| data | bytes | undefined |
+| Name     | Type    | Description |
+| -------- | ------- | ----------- |
+| operator | address | undefined   |
+| from     | address | undefined   |
+| tokenId  | uint256 | undefined   |
+| data     | bytes   | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes4 | undefined |
-
-
-
-
+| Name | Type   | Description |
+| ---- | ------ | ----------- |
+| \_0  | bytes4 | undefined   |

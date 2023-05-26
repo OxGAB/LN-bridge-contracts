@@ -1,12 +1,3 @@
 # SignedMath
 
-
-
-
-
-
-
-*Standard signed math utilities missing in the Solidity language.*
-
-
-
+_Standard signed math utilities missing in the Solidity language._

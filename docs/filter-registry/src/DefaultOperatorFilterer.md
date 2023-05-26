@@ -1,12 +1,10 @@
 # DefaultOperatorFilterer
 
-
-
 > DefaultOperatorFilterer
 
 Inherits from OperatorFilterer and automatically subscribes to the default OpenSea subscription.
 
-*Please note that if your token contract does not provide an owner with EIP-173, it must provide         administration methods on the contract itself to interact with the registry otherwise the subscription         will be locked to the options set during construction.*
+_Please note that if your token contract does not provide an owner with EIP-173, it must provide administration methods on the contract itself to interact with the registry otherwise the subscription will be locked to the options set during construction._
 
 ## Methods
 
@@ -16,19 +14,11 @@ Inherits from OperatorFilterer and automatically subscribes to the default OpenS
 function OPERATOR_FILTER_REGISTRY() external view returns (contract IOperatorFilterRegistry)
 ```
 
-
-
-
-
-
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | contract IOperatorFilterRegistry | undefined |
-
-
-
+| Name | Type                             | Description |
+| ---- | -------------------------------- | ----------- |
+| \_0  | contract IOperatorFilterRegistry | undefined   |
 
 ## Errors
 
@@ -38,14 +28,10 @@ function OPERATOR_FILTER_REGISTRY() external view returns (contract IOperatorFil
 error OperatorNotAllowed(address operator)
 ```
 
-
-
-*Emitted when an operator is not allowed.*
+_Emitted when an operator is not allowed._
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| operator | address | undefined |
-
-
+| Name     | Type    | Description |
+| -------- | ------- | ----------- |
+| operator | address | undefined   |

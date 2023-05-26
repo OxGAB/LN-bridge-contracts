@@ -1,13 +1,5 @@
 # IOperatorFilterRegistry
 
-
-
-
-
-
-
-
-
 ## Methods
 
 ### codeHashOf
@@ -16,21 +8,19 @@
 function codeHashOf(address addr) external nonpayable returns (bytes32)
 ```
 
-
-
-*Convenience method to compute the code hash of an arbitrary contract*
+_Convenience method to compute the code hash of an arbitrary contract_
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes32 | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| \_0  | bytes32 | undefined   |
 
 ### copyEntriesOf
 
@@ -40,14 +30,12 @@ function copyEntriesOf(address registrant, address registrantToCopy) external no
 
 Copy filtered operators and codeHashes from a different registrantToCopy to addr.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| registrantToCopy | address | undefined |
+| Name             | Type    | Description |
+| ---------------- | ------- | ----------- |
+| registrant       | address | undefined   |
+| registrantToCopy | address | undefined   |
 
 ### filteredCodeHashAt
 
@@ -55,22 +43,20 @@ Copy filtered operators and codeHashes from a different registrantToCopy to addr
 function filteredCodeHashAt(address registrant, uint256 index) external nonpayable returns (bytes32)
 ```
 
-Returns the filtered codeHash at the given index of the list of filtered codeHashes for a given address or         its subscription.         Note that order is not guaranteed as updates are made.
-
-
+Returns the filtered codeHash at the given index of the list of filtered codeHashes for a given address or its subscription. Note that order is not guaranteed as updates are made.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| index | uint256 | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| index      | uint256 | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes32 | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| \_0  | bytes32 | undefined   |
 
 ### filteredCodeHashes
 
@@ -78,21 +64,19 @@ Returns the filtered codeHash at the given index of the list of filtered codeHas
 function filteredCodeHashes(address addr) external nonpayable returns (bytes32[])
 ```
 
-Returns the set of filtered codeHashes for a given address or its subscription.         Note that order is not guaranteed as updates are made.
-
-
+Returns the set of filtered codeHashes for a given address or its subscription. Note that order is not guaranteed as updates are made.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes32[] | undefined |
+| Name | Type      | Description |
+| ---- | --------- | ----------- |
+| \_0  | bytes32[] | undefined   |
 
 ### filteredOperatorAt
 
@@ -100,22 +84,20 @@ Returns the set of filtered codeHashes for a given address or its subscription. 
 function filteredOperatorAt(address registrant, uint256 index) external nonpayable returns (address)
 ```
 
-Returns the filtered operator at the given index of the set of filtered operators for a given address or         its subscription.         Note that order is not guaranteed as updates are made.
-
-
+Returns the filtered operator at the given index of the set of filtered operators for a given address or its subscription. Note that order is not guaranteed as updates are made.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| index | uint256 | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| index      | uint256 | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| \_0  | address | undefined   |
 
 ### filteredOperators
 
@@ -125,19 +107,17 @@ function filteredOperators(address addr) external nonpayable returns (address[])
 
 Returns a list of filtered operators for a given address or its subscription.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | address[] | undefined |
+| Name | Type      | Description |
+| ---- | --------- | ----------- |
+| \_0  | address[] | undefined   |
 
 ### isCodeHashFiltered
 
@@ -147,20 +127,18 @@ function isCodeHashFiltered(address registrant, bytes32 codeHash) external nonpa
 
 Returns true if a codeHash is filtered by a given address or its subscription.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| codeHash | bytes32 | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| codeHash   | bytes32 | undefined   |
 
 #### Returns
 
 | Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
+| ---- | ---- | ----------- |
+| \_0  | bool | undefined   |
 
 ### isCodeHashOfFiltered
 
@@ -170,20 +148,18 @@ function isCodeHashOfFiltered(address registrant, address operatorWithCode) exte
 
 Returns true if the hash of an address&#39;s code is filtered by a given address or its subscription.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| operatorWithCode | address | undefined |
+| Name             | Type    | Description |
+| ---------------- | ------- | ----------- |
+| registrant       | address | undefined   |
+| operatorWithCode | address | undefined   |
 
 #### Returns
 
 | Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
+| ---- | ---- | ----------- |
+| \_0  | bool | undefined   |
 
 ### isOperatorAllowed
 
@@ -191,22 +167,20 @@ Returns true if the hash of an address&#39;s code is filtered by a given address
 function isOperatorAllowed(address registrant, address operator) external view returns (bool)
 ```
 
-Returns true if operator is not filtered for a given token, either by address or codeHash. Also returns         true if supplied registrant address is not registered.
-
-
+Returns true if operator is not filtered for a given token, either by address or codeHash. Also returns true if supplied registrant address is not registered.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| operator | address | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| operator   | address | undefined   |
 
 #### Returns
 
 | Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
+| ---- | ---- | ----------- |
+| \_0  | bool | undefined   |
 
 ### isOperatorFiltered
 
@@ -216,20 +190,18 @@ function isOperatorFiltered(address registrant, address operator) external nonpa
 
 Returns true if operator is filtered by a given address or its subscription.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| operator | address | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| operator   | address | undefined   |
 
 #### Returns
 
 | Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
+| ---- | ---- | ----------- |
+| \_0  | bool | undefined   |
 
 ### isRegistered
 
@@ -239,19 +211,17 @@ function isRegistered(address addr) external nonpayable returns (bool)
 
 Returns true if an address has registered
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 #### Returns
 
 | Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
+| ---- | ---- | ----------- |
+| \_0  | bool | undefined   |
 
 ### register
 
@@ -261,13 +231,11 @@ function register(address registrant) external nonpayable
 
 Registers an address with the registry. May be called by address itself or by EIP-173 owner.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
 
 ### registerAndCopyEntries
 
@@ -275,16 +243,14 @@ Registers an address with the registry. May be called by address itself or by EI
 function registerAndCopyEntries(address registrant, address registrantToCopy) external nonpayable
 ```
 
-Registers an address with the registry and copies the filtered operators and codeHashes from another         address without subscribing.
-
-
+Registers an address with the registry and copies the filtered operators and codeHashes from another address without subscribing.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| registrantToCopy | address | undefined |
+| Name             | Type    | Description |
+| ---------------- | ------- | ----------- |
+| registrant       | address | undefined   |
+| registrantToCopy | address | undefined   |
 
 ### registerAndSubscribe
 
@@ -294,14 +260,12 @@ function registerAndSubscribe(address registrant, address subscription) external
 
 Registers an address with the registry and &quot;subscribes&quot; to another address&#39;s filtered operators and codeHashes.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| subscription | address | undefined |
+| Name         | Type    | Description |
+| ------------ | ------- | ----------- |
+| registrant   | address | undefined   |
+| subscription | address | undefined   |
 
 ### subscribe
 
@@ -309,16 +273,14 @@ Registers an address with the registry and &quot;subscribes&quot; to another add
 function subscribe(address registrant, address registrantToSubscribe) external nonpayable
 ```
 
-Subscribe an address to another registrant&#39;s filtered operators and codeHashes. Will remove previous         subscription if present.         Note that accounts with subscriptions may go on to subscribe to other accounts - in this case,         subscriptions will not be forwarded. Instead the former subscription&#39;s existing entries will still be         used.
-
-
+Subscribe an address to another registrant&#39;s filtered operators and codeHashes. Will remove previous subscription if present. Note that accounts with subscriptions may go on to subscribe to other accounts - in this case, subscriptions will not be forwarded. Instead the former subscription&#39;s existing entries will still be used.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| registrantToSubscribe | address | undefined |
+| Name                  | Type    | Description |
+| --------------------- | ------- | ----------- |
+| registrant            | address | undefined   |
+| registrantToSubscribe | address | undefined   |
 
 ### subscriberAt
 
@@ -326,22 +288,20 @@ Subscribe an address to another registrant&#39;s filtered operators and codeHash
 function subscriberAt(address registrant, uint256 index) external nonpayable returns (address)
 ```
 
-Get the subscriber at a given index in the set of addresses subscribed to a given registrant.         Note that order is not guaranteed as updates are made.
-
-
+Get the subscriber at a given index in the set of addresses subscribed to a given registrant. Note that order is not guaranteed as updates are made.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| index | uint256 | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| index      | uint256 | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| \_0  | address | undefined   |
 
 ### subscribers
 
@@ -349,21 +309,19 @@ Get the subscriber at a given index in the set of addresses subscribed to a give
 function subscribers(address registrant) external nonpayable returns (address[])
 ```
 
-Get the set of addresses subscribed to a given registrant.         Note that order is not guaranteed as updates are made.
-
-
+Get the set of addresses subscribed to a given registrant. Note that order is not guaranteed as updates are made.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| _0 | address[] | undefined |
+| Name | Type      | Description |
+| ---- | --------- | ----------- |
+| \_0  | address[] | undefined   |
 
 ### subscriptionOf
 
@@ -373,19 +331,17 @@ function subscriptionOf(address addr) external nonpayable returns (address regis
 
 Get the subscription address of a given registrant, if any.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 #### Returns
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
 
 ### unregister
 
@@ -393,15 +349,13 @@ Get the subscription address of a given registrant, if any.
 function unregister(address addr) external nonpayable
 ```
 
-Unregisters an address with the registry and removes its subscription. May be called by address itself or by EIP-173 owner.         Note that this does not remove any filtered addresses or codeHashes.         Also note that any subscriptions to this registrant will still be active and follow the existing filtered addresses and codehashes.
-
-
+Unregisters an address with the registry and removes its subscription. May be called by address itself or by EIP-173 owner. Note that this does not remove any filtered addresses or codeHashes. Also note that any subscriptions to this registrant will still be active and follow the existing filtered addresses and codehashes.
 
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| addr | address | undefined |
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| addr | address | undefined   |
 
 ### unsubscribe
 
@@ -411,14 +365,12 @@ function unsubscribe(address registrant, bool copyExistingEntries) external nonp
 
 Unsubscribe an address from its current subscribed registrant, and optionally copy its filtered operators and codeHashes.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| copyExistingEntries | bool | undefined |
+| Name                | Type    | Description |
+| ------------------- | ------- | ----------- |
+| registrant          | address | undefined   |
+| copyExistingEntries | bool    | undefined   |
 
 ### updateCodeHash
 
@@ -428,15 +380,13 @@ function updateCodeHash(address registrant, bytes32 codehash, bool filtered) ext
 
 Update a codeHash for a registered address - when filtered is true, the codeHash is filtered.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| codehash | bytes32 | undefined |
-| filtered | bool | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| codehash   | bytes32 | undefined   |
+| filtered   | bool    | undefined   |
 
 ### updateCodeHashes
 
@@ -446,15 +396,13 @@ function updateCodeHashes(address registrant, bytes32[] codeHashes, bool filtere
 
 Update multiple codeHashes for a registered address - when filtered is true, the codeHashes will be filtered. Reverts on duplicates.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| codeHashes | bytes32[] | undefined |
-| filtered | bool | undefined |
+| Name       | Type      | Description |
+| ---------- | --------- | ----------- |
+| registrant | address   | undefined   |
+| codeHashes | bytes32[] | undefined   |
+| filtered   | bool      | undefined   |
 
 ### updateOperator
 
@@ -464,15 +412,13 @@ function updateOperator(address registrant, address operator, bool filtered) ext
 
 Update an operator address for a registered address - when filtered is true, the operator is filtered.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| operator | address | undefined |
-| filtered | bool | undefined |
+| Name       | Type    | Description |
+| ---------- | ------- | ----------- |
+| registrant | address | undefined   |
+| operator   | address | undefined   |
+| filtered   | bool    | undefined   |
 
 ### updateOperators
 
@@ -482,16 +428,10 @@ function updateOperators(address registrant, address[] operators, bool filtered)
 
 Update multiple operators for a registered address - when filtered is true, the operators will be filtered. Reverts on duplicates.
 
-
-
 #### Parameters
 
-| Name | Type | Description |
-|---|---|---|
-| registrant | address | undefined |
-| operators | address[] | undefined |
-| filtered | bool | undefined |
-
-
-
-
+| Name       | Type      | Description |
+| ---------- | --------- | ----------- |
+| registrant | address   | undefined   |
+| operators  | address[] | undefined   |
+| filtered   | bool      | undefined   |
