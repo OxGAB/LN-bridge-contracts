@@ -106,6 +106,8 @@ function dstChainIdToTransferGas(uint16) external view returns (uint256)
 function estimateSendBatchFee(uint16 _dstChainId, bytes _toAddress, uint256[] _tokenIds, bool _useZro, bytes _adapterParams) external view returns (uint256 nativeFee, uint256 zroFee)
 ```
 
+_estimate send token `_tokenId` to (`_dstChainId`, `_toAddress`) \_dstChainId - L0 defined chain id to send tokens too \_toAddress - dynamic bytes array which contains the address to whom you are sending tokens to on the dstChain \_tokenIds[] - token Ids to transfer \_useZro - indicates to use zro to pay L0 fees \_adapterParams - flexible bytes array to indicate messaging adapter services in L0_
+
 #### Parameters
 
 | Name            | Type      | Description |
@@ -128,6 +130,8 @@ function estimateSendBatchFee(uint16 _dstChainId, bytes _toAddress, uint256[] _t
 ```solidity
 function estimateSendFee(uint16 _dstChainId, bytes _toAddress, uint256 _tokenId, bool _useZro, bytes _adapterParams) external view returns (uint256 nativeFee, uint256 zroFee)
 ```
+
+_estimate send token `_tokenId` to (`_dstChainId`, `_toAddress`) \_dstChainId - L0 defined chain id to send tokens too \_toAddress - dynamic bytes array which contains the address to whom you are sending tokens to on the dstChain \_tokenId - token Id to transfer \_useZro - indicates to use zro to pay L0 fees \_adapterParams - flexible bytes array to indicate messaging adapter services in L0_
 
 #### Parameters
 
@@ -398,6 +402,24 @@ function retryMessage(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, byte
 | \_nonce      | uint64 | undefined   |
 | \_payload    | bytes  | undefined   |
 
+### sendBatchFrom
+
+```solidity
+function sendBatchFrom(address, uint16, bytes, uint256[], address payable, address, bytes) external payable
+```
+
+#### Parameters
+
+| Name | Type            | Description |
+| ---- | --------------- | ----------- |
+| \_0  | address         | undefined   |
+| \_1  | uint16          | undefined   |
+| \_2  | bytes           | undefined   |
+| \_3  | uint256[]       | undefined   |
+| \_4  | address payable | undefined   |
+| \_5  | address         | undefined   |
+| \_6  | bytes           | undefined   |
+
 ### sendBatchToEth
 
 ```solidity
@@ -413,6 +435,24 @@ function sendBatchToEth(address _toAddress, uint256[] _tokenIds, address payable
 | \_refundAddress     | address payable | undefined   |
 | \_zroPaymentAddress | address         | undefined   |
 | \_adapterParams     | bytes           | undefined   |
+
+### sendFrom
+
+```solidity
+function sendFrom(address, uint16, bytes, uint256, address payable, address, bytes) external payable
+```
+
+#### Parameters
+
+| Name | Type            | Description |
+| ---- | --------------- | ----------- |
+| \_0  | address         | undefined   |
+| \_1  | uint16          | undefined   |
+| \_2  | bytes           | undefined   |
+| \_3  | uint256         | undefined   |
+| \_4  | address payable | undefined   |
+| \_5  | address         | undefined   |
+| \_6  | bytes           | undefined   |
 
 ### sendToEth
 
@@ -598,8 +638,6 @@ function storedCredits(bytes32) external view returns (uint16 srcChainId, addres
 ```solidity
 function supportsInterface(bytes4 interfaceId) external view returns (bool)
 ```
-
-_See {IERC165-supportsInterface}._
 
 #### Parameters
 
@@ -872,22 +910,28 @@ event SetTrustedRemoteAddress(uint16 _remoteChainId, bytes _remoteAddress)
 
 ## Errors
 
-### LNEthVault\_\_NotKeeper
+### LongNecksEthVault\_\_NotImplemented
 
 ```solidity
-error LNEthVault__NotKeeper()
+error LongNecksEthVault__NotImplemented()
 ```
 
-### LNEthVault\_\_NotOwner
+### LongNecksEthVault\_\_NotKeeper
 
 ```solidity
-error LNEthVault__NotOwner()
+error LongNecksEthVault__NotKeeper()
 ```
 
-### LNEthVault\_\_TransferFromFailed
+### LongNecksEthVault\_\_NotOwner
 
 ```solidity
-error LNEthVault__TransferFromFailed(address from, address to, uint256 tokenId)
+error LongNecksEthVault__NotOwner()
+```
+
+### LongNecksEthVault\_\_TransferFromFailed
+
+```solidity
+error LongNecksEthVault__TransferFromFailed(address from, address to, uint256 tokenId)
 ```
 
 #### Parameters
