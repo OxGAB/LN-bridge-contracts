@@ -5,7 +5,7 @@ import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {NonblockingLzApp} from "./lzApp/NonblockingLzApp.sol";
 import {ERC165} from "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-import {IONFT721Core} from "./interfaces/IONFT721Core.sol";
+import {IONFT721Core} from "./token/onft/IONFT721Core.sol";
 
 // TODO: add credit to and debit from implementation
 /// @title LongNecks Etheureum Vault
@@ -197,8 +197,8 @@ contract LongNecksEthVault is Ownable, NonblockingLzApp, ERC165 {
             );
     }
 
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ONFT721Core, ERC721, IERC165) returns (bool) {
-        return interfaceId == type(IONFT721).interfaceId || super.supportsInterface(interfaceId);
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165) returns (bool) {
+        return interfaceId == type(IONFT721Core).interfaceId || super.supportsInterface(interfaceId);
     }
     function _send(
         address _from,
