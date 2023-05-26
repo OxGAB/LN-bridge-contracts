@@ -1,5 +1,13 @@
 # LzApp
 
+
+
+
+
+
+
+
+
 ## Methods
 
 ### DEFAULT_PAYLOAD_SIZE_LIMIT
@@ -8,11 +16,16 @@
 function DEFAULT_PAYLOAD_SIZE_LIMIT() external view returns (uint256)
 ```
 
+
+
+
+
+
 #### Returns
 
-| Name | Type    | Description |
-| ---- | ------- | ----------- |
-| \_0  | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
 
 ### forceResumeReceive
 
@@ -20,12 +33,16 @@ function DEFAULT_PAYLOAD_SIZE_LIMIT() external view returns (uint256)
 function forceResumeReceive(uint16 _srcChainId, bytes _srcAddress) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type   | Description |
-| ------------ | ------ | ----------- |
-| \_srcChainId | uint16 | undefined   |
-| \_srcAddress | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _srcChainId | uint16 | undefined |
+| _srcAddress | bytes | undefined |
 
 ### getConfig
 
@@ -33,20 +50,24 @@ function forceResumeReceive(uint16 _srcChainId, bytes _srcAddress) external nonp
 function getConfig(uint16 _version, uint16 _chainId, address, uint256 _configType) external view returns (bytes)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type    | Description |
-| ------------ | ------- | ----------- |
-| \_version    | uint16  | undefined   |
-| \_chainId    | uint16  | undefined   |
-| \_2          | address | undefined   |
-| \_configType | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _version | uint16 | undefined |
+| _chainId | uint16 | undefined |
+| _2 | address | undefined |
+| _configType | uint256 | undefined |
 
 #### Returns
 
-| Name | Type  | Description |
-| ---- | ----- | ----------- |
-| \_0  | bytes | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | bytes | undefined |
 
 ### getTrustedRemoteAddress
 
@@ -54,17 +75,21 @@ function getConfig(uint16 _version, uint16 _chainId, address, uint256 _configTyp
 function getTrustedRemoteAddress(uint16 _remoteChainId) external view returns (bytes)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name            | Type   | Description |
-| --------------- | ------ | ----------- |
-| \_remoteChainId | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _remoteChainId | uint16 | undefined |
 
 #### Returns
 
-| Name | Type  | Description |
-| ---- | ----- | ----------- |
-| \_0  | bytes | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | bytes | undefined |
 
 ### isTrustedRemote
 
@@ -72,18 +97,22 @@ function getTrustedRemoteAddress(uint16 _remoteChainId) external view returns (b
 function isTrustedRemote(uint16 _srcChainId, bytes _srcAddress) external view returns (bool)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type   | Description |
-| ------------ | ------ | ----------- |
-| \_srcChainId | uint16 | undefined   |
-| \_srcAddress | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _srcChainId | uint16 | undefined |
+| _srcAddress | bytes | undefined |
 
 #### Returns
 
 | Name | Type | Description |
-| ---- | ---- | ----------- |
-| \_0  | bool | undefined   |
+|---|---|---|
+| _0 | bool | undefined |
 
 ### lzEndpoint
 
@@ -91,11 +120,16 @@ function isTrustedRemote(uint16 _srcChainId, bytes _srcAddress) external view re
 function lzEndpoint() external view returns (contract ILayerZeroEndpoint)
 ```
 
+
+
+
+
+
 #### Returns
 
-| Name | Type                        | Description |
-| ---- | --------------------------- | ----------- |
-| \_0  | contract ILayerZeroEndpoint | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | contract ILayerZeroEndpoint | undefined |
 
 ### lzReceive
 
@@ -103,14 +137,18 @@ function lzEndpoint() external view returns (contract ILayerZeroEndpoint)
 function lzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _payload) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type   | Description |
-| ------------ | ------ | ----------- |
-| \_srcChainId | uint16 | undefined   |
-| \_srcAddress | bytes  | undefined   |
-| \_nonce      | uint64 | undefined   |
-| \_payload    | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _srcChainId | uint16 | undefined |
+| _srcAddress | bytes | undefined |
+| _nonce | uint64 | undefined |
+| _payload | bytes | undefined |
 
 ### minDstGasLookup
 
@@ -118,18 +156,22 @@ function lzReceive(uint16 _srcChainId, bytes _srcAddress, uint64 _nonce, bytes _
 function minDstGasLookup(uint16, uint16) external view returns (uint256)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name | Type   | Description |
-| ---- | ------ | ----------- |
-| \_0  | uint16 | undefined   |
-| \_1  | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint16 | undefined |
+| _1 | uint16 | undefined |
 
 #### Returns
 
-| Name | Type    | Description |
-| ---- | ------- | ----------- |
-| \_0  | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
 
 ### owner
 
@@ -137,13 +179,16 @@ function minDstGasLookup(uint16, uint16) external view returns (uint256)
 function owner() external view returns (address)
 ```
 
-_Returns the address of the current owner._
+
+
+*Returns the address of the current owner.*
+
 
 #### Returns
 
-| Name | Type    | Description |
-| ---- | ------- | ----------- |
-| \_0  | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | address | undefined |
 
 ### payloadSizeLimitLookup
 
@@ -151,17 +196,21 @@ _Returns the address of the current owner._
 function payloadSizeLimitLookup(uint16) external view returns (uint256)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name | Type   | Description |
-| ---- | ------ | ----------- |
-| \_0  | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint16 | undefined |
 
 #### Returns
 
-| Name | Type    | Description |
-| ---- | ------- | ----------- |
-| \_0  | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
 
 ### precrime
 
@@ -169,11 +218,16 @@ function payloadSizeLimitLookup(uint16) external view returns (uint256)
 function precrime() external view returns (address)
 ```
 
+
+
+
+
+
 #### Returns
 
-| Name | Type    | Description |
-| ---- | ------- | ----------- |
-| \_0  | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | address | undefined |
 
 ### renounceOwnership
 
@@ -181,7 +235,10 @@ function precrime() external view returns (address)
 function renounceOwnership() external nonpayable
 ```
 
-_Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner._
+
+
+*Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.*
+
 
 ### setConfig
 
@@ -189,14 +246,18 @@ _Leaves the contract without owner. It will not be possible to call `onlyOwner` 
 function setConfig(uint16 _version, uint16 _chainId, uint256 _configType, bytes _config) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type    | Description |
-| ------------ | ------- | ----------- |
-| \_version    | uint16  | undefined   |
-| \_chainId    | uint16  | undefined   |
-| \_configType | uint256 | undefined   |
-| \_config     | bytes   | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _version | uint16 | undefined |
+| _chainId | uint16 | undefined |
+| _configType | uint256 | undefined |
+| _config | bytes | undefined |
 
 ### setMinDstGas
 
@@ -204,13 +265,17 @@ function setConfig(uint16 _version, uint16 _chainId, uint256 _configType, bytes 
 function setMinDstGas(uint16 _dstChainId, uint16 _packetType, uint256 _minGas) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type    | Description |
-| ------------ | ------- | ----------- |
-| \_dstChainId | uint16  | undefined   |
-| \_packetType | uint16  | undefined   |
-| \_minGas     | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _dstChainId | uint16 | undefined |
+| _packetType | uint16 | undefined |
+| _minGas | uint256 | undefined |
 
 ### setPayloadSizeLimit
 
@@ -218,12 +283,16 @@ function setMinDstGas(uint16 _dstChainId, uint16 _packetType, uint256 _minGas) e
 function setPayloadSizeLimit(uint16 _dstChainId, uint256 _size) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type    | Description |
-| ------------ | ------- | ----------- |
-| \_dstChainId | uint16  | undefined   |
-| \_size       | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _dstChainId | uint16 | undefined |
+| _size | uint256 | undefined |
 
 ### setPrecrime
 
@@ -231,11 +300,15 @@ function setPayloadSizeLimit(uint16 _dstChainId, uint256 _size) external nonpaya
 function setPrecrime(address _precrime) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name       | Type    | Description |
-| ---------- | ------- | ----------- |
-| \_precrime | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _precrime | address | undefined |
 
 ### setReceiveVersion
 
@@ -243,11 +316,15 @@ function setPrecrime(address _precrime) external nonpayable
 function setReceiveVersion(uint16 _version) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name      | Type   | Description |
-| --------- | ------ | ----------- |
-| \_version | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _version | uint16 | undefined |
 
 ### setSendVersion
 
@@ -255,11 +332,15 @@ function setReceiveVersion(uint16 _version) external nonpayable
 function setSendVersion(uint16 _version) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name      | Type   | Description |
-| --------- | ------ | ----------- |
-| \_version | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _version | uint16 | undefined |
 
 ### setTrustedRemote
 
@@ -267,12 +348,16 @@ function setSendVersion(uint16 _version) external nonpayable
 function setTrustedRemote(uint16 _remoteChainId, bytes _path) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name            | Type   | Description |
-| --------------- | ------ | ----------- |
-| \_remoteChainId | uint16 | undefined   |
-| \_path          | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _remoteChainId | uint16 | undefined |
+| _path | bytes | undefined |
 
 ### setTrustedRemoteAddress
 
@@ -280,12 +365,16 @@ function setTrustedRemote(uint16 _remoteChainId, bytes _path) external nonpayabl
 function setTrustedRemoteAddress(uint16 _remoteChainId, bytes _remoteAddress) external nonpayable
 ```
 
+
+
+
+
 #### Parameters
 
-| Name            | Type   | Description |
-| --------------- | ------ | ----------- |
-| \_remoteChainId | uint16 | undefined   |
-| \_remoteAddress | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _remoteChainId | uint16 | undefined |
+| _remoteAddress | bytes | undefined |
 
 ### transferOwnership
 
@@ -293,13 +382,15 @@ function setTrustedRemoteAddress(uint16 _remoteChainId, bytes _remoteAddress) ex
 function transferOwnership(address newOwner) external nonpayable
 ```
 
-_Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner._
+
+
+*Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.*
 
 #### Parameters
 
-| Name     | Type    | Description |
-| -------- | ------- | ----------- |
-| newOwner | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| newOwner | address | undefined |
 
 ### trustedRemoteLookup
 
@@ -307,17 +398,23 @@ _Transfers ownership of the contract to a new account (`newOwner`). Can only be 
 function trustedRemoteLookup(uint16) external view returns (bytes)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name | Type   | Description |
-| ---- | ------ | ----------- |
-| \_0  | uint16 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint16 | undefined |
 
 #### Returns
 
-| Name | Type  | Description |
-| ---- | ----- | ----------- |
-| \_0  | bytes | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _0 | bytes | undefined |
+
+
 
 ## Events
 
@@ -327,12 +424,16 @@ function trustedRemoteLookup(uint16) external view returns (bytes)
 event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name                    | Type    | Description |
-| ----------------------- | ------- | ----------- |
-| previousOwner `indexed` | address | undefined   |
-| newOwner `indexed`      | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| previousOwner `indexed` | address | undefined |
+| newOwner `indexed` | address | undefined |
 
 ### SetMinDstGas
 
@@ -340,13 +441,17 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 event SetMinDstGas(uint16 _dstChainId, uint16 _type, uint256 _minDstGas)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name         | Type    | Description |
-| ------------ | ------- | ----------- |
-| \_dstChainId | uint16  | undefined   |
-| \_type       | uint16  | undefined   |
-| \_minDstGas  | uint256 | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _dstChainId  | uint16 | undefined |
+| _type  | uint16 | undefined |
+| _minDstGas  | uint256 | undefined |
 
 ### SetPrecrime
 
@@ -354,11 +459,15 @@ event SetMinDstGas(uint16 _dstChainId, uint16 _type, uint256 _minDstGas)
 event SetPrecrime(address precrime)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name     | Type    | Description |
-| -------- | ------- | ----------- |
-| precrime | address | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| precrime  | address | undefined |
 
 ### SetTrustedRemote
 
@@ -366,12 +475,16 @@ event SetPrecrime(address precrime)
 event SetTrustedRemote(uint16 _remoteChainId, bytes _path)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name            | Type   | Description |
-| --------------- | ------ | ----------- |
-| \_remoteChainId | uint16 | undefined   |
-| \_path          | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _remoteChainId  | uint16 | undefined |
+| _path  | bytes | undefined |
 
 ### SetTrustedRemoteAddress
 
@@ -379,9 +492,16 @@ event SetTrustedRemote(uint16 _remoteChainId, bytes _path)
 event SetTrustedRemoteAddress(uint16 _remoteChainId, bytes _remoteAddress)
 ```
 
+
+
+
+
 #### Parameters
 
-| Name            | Type   | Description |
-| --------------- | ------ | ----------- |
-| \_remoteChainId | uint16 | undefined   |
-| \_remoteAddress | bytes  | undefined   |
+| Name | Type | Description |
+|---|---|---|
+| _remoteChainId  | uint16 | undefined |
+| _remoteAddress  | bytes | undefined |
+
+
+
