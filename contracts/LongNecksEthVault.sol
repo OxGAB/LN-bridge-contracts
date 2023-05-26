@@ -36,10 +36,19 @@ contract LongNecksEthVault is Ownable, ONFT721Core {
         IERC721 _LongNecksNFT,
         address _lzEndpoint,
         uint256 _minGasToTransferAndStore,
-        uint16 _ethChainId
+        uint16 _ethChainId,
+        address _LongNecksONFT
     ) ONFT721Core(_minGasToTransferAndStore, _lzEndpoint) {
-        LongNecksNFT = _LongNecksNFT;
         ETH_CHAIN_ID = _ethChainId;
+        LongNecksNFT = _LongNecksNFT;
+        trustedRemoteLookup[ETH_CHAIN_ID] = abi.encodePacked(
+            abi.encodePacked(_LongNecksONFT),
+            address(this)
+        );
+        emit SetTrustedRemoteAddress(
+            ETH_CHAIN_ID,
+            abi.encodePacked(_LongNecksONFT)
+        );
     }
 
     function sendToEth(
