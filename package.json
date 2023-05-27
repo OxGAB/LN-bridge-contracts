@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Smart Contracts for Canto's leading NFT collection, Long Necks, bridge to Ethereum.",
   "main": "hardhat.config.ts",
+  "scripts": {
+    "test": "npx hardhat test"
+  },
   "author": "OxGAB",
   "license": "Unlicense",
   "private": true,
