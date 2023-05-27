@@ -74,6 +74,23 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         return baseURI;
     }
 
+    function _debitFrom(
+        address,
+        uint16,
+        bytes memory,
+        uint _tokenId
+    ) internal override(ONFT721A) {
+        _burn(_tokenId, true);
+    }
+
+    function _creditTo(
+        uint16,
+        address _toAddress,
+        uint _tokenId
+    ) internal override(ONFT721A) {
+        _safeMint(_toAddress, _tokenId);
+    }
+
     // --------Blacklist Overrides--------//
     function setApprovalForAll(
         address operator,
