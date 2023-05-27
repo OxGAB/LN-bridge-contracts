@@ -97,12 +97,20 @@ export async function register(staging?: boolean) {
     const chainIdEth = 1;
     const lzEndpointMockCanto = await registerLayerZeroEndpoint(chainIdCanto);
     const lzEndpointMockETH = await registerLayerZeroEndpoint(chainIdEth);
-    const minGas = BN(1000000000);
+    const minGas = BN(100);
 
     log('Deploying LongNecks Canto Mock', staging);
-    const { ERC721Mock: lnMock, nftOwner: lnOwner } = await registerErc721Mock(
+    const { ERC721Mock: lnMock, nftOwner: _lnOwner } = await registerErc721Mock(
         'LongNecks',
         'LNFT',
+    );
+    setBalance(_lnOwner.address, 10);
+    const lnOwner = _lnOwner.connect(
+        (() => {
+            if (deployer.provider === undefined)
+                throw new Error('Provider is undefined');
+            return deployer.provider;
+        })(),
     );
 
     log('Deploying LongNecksONFT ETH Mock', staging);
@@ -117,10 +125,15 @@ export async function register(staging?: boolean) {
     const { lnEthVault } = await registerLNEthVault(
         lnMock.address,
         lnONFT.address,
-        lzEndpointMockETH.address,
+        lzEndpointMockCanto.address,
         minGas,
         chainIdEth,
     );
+
+    await (
+        await lnONFT.setTrustedRemoteAddress(chainIdCanto, lnEthVault.address)
+    ).wait();
+    await (await lnEthVault.setMinDstGas(chainIdEth, 1, minGas)).wait();
 
     log('Connecting LayerZero Endpoints', staging);
     await (
