@@ -47,6 +47,7 @@ async function registerErc721Mock(
 
 async function registerLNONFT(
     lzEndpointAddr: string,
+    cantoChainId: BigNumberish,
     baseUri: string,
     minGas: BigNumberish,
     owner: string,
@@ -57,6 +58,7 @@ async function registerLNONFT(
             await ethers.getContractFactory('LongNecksONFT')
         ).deploy(
             lzEndpointAddr,
+            cantoChainId,
             baseUri,
             minGas,
             royalitiesReceiver.address,
@@ -116,6 +118,7 @@ export async function register(staging?: boolean) {
     log('Deploying LongNecksONFT ETH Mock', staging);
     const { lnONFT: lnONFT, royalitiesReceiver } = await registerLNONFT(
         lzEndpointMockETH.address,
+        chainIdCanto,
         'https://ipfs.io/ipfs/',
         minGas,
         deployer.address,
@@ -134,6 +137,7 @@ export async function register(staging?: boolean) {
         await lnONFT.setTrustedRemoteAddress(chainIdCanto, lnEthVault.address)
     ).wait();
     await (await lnEthVault.setMinDstGas(chainIdEth, 1, minGas)).wait();
+    await (await lnONFT.setMinDstGas(chainIdCanto, 1, minGas)).wait();
 
     log('Connecting LayerZero Endpoints', staging);
     await (
