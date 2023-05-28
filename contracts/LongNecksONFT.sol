@@ -1,18 +1,22 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
 
-import {ERC721A} from "erc721a/contracts/ERC721A.sol";
-import {IERC721A} from "erc721a/contracts/IERC721A.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
-import {ONFT721A} from "./token/onft/extension/ONFT721A.sol";
+import {ONFT721} from "./token/onft/ONFT721.sol";
 import {DefaultOperatorFilterer} from "operator-filter-registry/src/DefaultOperatorFilterer.sol";
 
-contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
+
+contract LongNecksONFT is DefaultOperatorFilterer, ONFT721, ERC2981 {
     uint96 public constant ROYALTY_FEE = 500; // 5% of every sale
 
     string private baseURI;
 
+    uint256 public totalSupply;
+
     error LongNecksONFT__CallerNotOwner();
+    error LongNecksONFT__CallerNotApproved();
 
     /// @param _layerZeroEndpoint Handles message transmission across chains
     /// @param __baseURI          URI endpoint to query metadata
@@ -24,10 +28,9 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         uint256 _minGas,
         address royaltyReceiver,
         address _owner
-    ) ONFT721A("Long Necks ONFT", "LN", _minGas, _layerZeroEndpoint) {
+    ) ONFT721("Long Necks ONFT", "LN", _minGas, _layerZeroEndpoint) {
         baseURI = __baseURI;
         _setDefaultRoyalty(royaltyReceiver, ROYALTY_FEE);
-
         transferOwnership(_owner);
     }
 
@@ -65,7 +68,7 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
      */
     function supportsInterface(
         bytes4 interfaceId
-    ) public view virtual override(ERC2981, ONFT721A) returns (bool) {
+    ) public view virtual override(ERC2981, ONFT721) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 
@@ -79,30 +82,34 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         uint16,
         bytes memory,
         uint _tokenId
-    ) internal override(ONFT721A) {
-        _burn(_tokenId, true);
+    ) internal override(ONFT721) {
+        if (!_isApprovedOrOwner(_msgSender(), _tokenId))
+            revert LongNecksONFT__CallerNotApproved();
+        _burn(_tokenId);
+        totalSupply--;
     }
 
     function _creditTo(
         uint16,
         address _toAddress,
         uint _tokenId
-    ) internal override(ONFT721A) {
+    ) internal override(ONFT721) {
         _safeMint(_toAddress, _tokenId);
+        totalSupply++;
     }
 
     // --------Blacklist Overrides--------//
     function setApprovalForAll(
         address operator,
         bool approved
-    ) public override(ERC721A) onlyAllowedOperatorApproval(operator) {
+    ) public override(ERC721, IERC721) onlyAllowedOperatorApproval(operator) {
         super.setApprovalForAll(operator, approved);
     }
 
     function approve(
         address operator,
         uint256 tokenId
-    ) public payable override(ERC721A) onlyAllowedOperatorApproval(operator) {
+    ) public override(ERC721, IERC721) onlyAllowedOperatorApproval(operator) {
         super.approve(operator, tokenId);
     }
 
@@ -110,7 +117,7 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         address from,
         address to,
         uint256 tokenId
-    ) public payable override(ERC721A) onlyAllowedOperator(from) {
+    ) public override(ERC721, IERC721) onlyAllowedOperator(from) {
         super.transferFrom(from, to, tokenId);
     }
 
@@ -118,7 +125,7 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         address from,
         address to,
         uint256 tokenId
-    ) public payable override(ERC721A) onlyAllowedOperator(from) {
+    ) public override(ERC721, IERC721) onlyAllowedOperator(from) {
         super.safeTransferFrom(from, to, tokenId);
     }
 
@@ -127,7 +134,7 @@ contract LongNecksONFT is DefaultOperatorFilterer, ONFT721A, ERC2981 {
         address to,
         uint256 tokenId,
         bytes memory data
-    ) public payable override(ERC721A) onlyAllowedOperator(from) {
+    ) public override(ERC721, IERC721) onlyAllowedOperator(from) {
         super.safeTransferFrom(from, to, tokenId, data);
     }
 }
