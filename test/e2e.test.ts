@@ -9,7 +9,7 @@ describe('e2e tests', () => {
     it('Should bridge nft from canto to eth', async () => {
         const {
             lnMock,
-            lnEthVault,
+            lnGate,
             lnONFT,
             lnOwner,
             minGas,
@@ -24,7 +24,7 @@ describe('e2e tests', () => {
         );
         // estimate nativeFees
         const nativeFee = (
-            await lnEthVault.estimateSendFee(
+            await lnGate.estimateSendFee(
                 chainIdEth,
                 lnOwner.address,
                 tokenId,
@@ -34,11 +34,13 @@ describe('e2e tests', () => {
         ).nativeFee;
 
         expect(await lnMock.ownerOf(tokenId)).to.equal(lnOwner.address);
-        await lnMock.connect(lnOwner).approve(lnEthVault.address, tokenId);
+        await lnMock.connect(lnOwner).approve(lnGate.address, tokenId);
         await expect(
-            await lnEthVault
+            await lnGate
                 .connect(lnOwner)
-                .sendToEth(
+                .sendFrom(
+                    lnOwner.address,
+                    chainIdEth,
                     lnOwner.address,
                     tokenId,
                     lnOwner.address,
@@ -49,7 +51,7 @@ describe('e2e tests', () => {
                     },
                 ),
         ).to.emit(lnONFT, 'ReceiveFromChain');
-        expect(await lnMock.ownerOf(tokenId)).to.equal(lnEthVault.address);
+        expect(await lnMock.ownerOf(tokenId)).to.equal(lnGate.address);
         expect(await lnONFT.totalSupply()).to.equal(1);
         expect(await lnONFT.ownerOf(tokenId)).to.equal(lnOwner.address);
 
@@ -66,6 +68,6 @@ describe('e2e tests', () => {
                     defaultAdapterParams,
                     { value: nativeFee },
                 ),
-        ).to.emit(lnEthVault, 'ReceiveFromEth');
+        ).to.emit(lnGate, 'ReceiveFromChain');
     });
 });
