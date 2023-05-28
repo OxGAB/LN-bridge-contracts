@@ -19,7 +19,8 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
         address from,
         address to,
         uint256 tokenId
-    );    
+    );
+
     constructor(
         IERC721 _LongNecksNFT,
         address _lzEndpoint,
@@ -28,9 +29,13 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
         LongNecksNFT = _LongNecksNFT;
     }
 
-    function rescueToken(uint16 _srcChainId, uint256 _tokenId, address _toAddress) public onlyOwner {
-            _creditTo(_srcChainId, _toAddress, _tokenId);
-            emit LongOmnichainNeckGate__RescuedToken(_tokenId, _toAddress);
+    function rescueToken(
+        uint16 _srcChainId,
+        uint256 _tokenId,
+        address _toAddress
+    ) public onlyOwner {
+        _creditTo(_srcChainId, _toAddress, _tokenId);
+        emit LongOmnichainNeckGate__RescuedToken(_tokenId, _toAddress);
     }
 
     function onERC721Received(
@@ -87,13 +92,4 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
                 _tokenId
             );
     }
-
-    function _bytesToAddress(
-        bytes memory bys
-    ) private pure returns (address addr) {
-        assembly {
-            addr := mload(add(bys, 20))
-        }
-    }
-
 }
