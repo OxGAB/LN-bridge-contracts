@@ -7,13 +7,20 @@ import { BN, register } from './test.utils';
 // TODO: test on forked chain
 describe('e2e tests', () => {
     it('Should bridge nft from canto to eth', async () => {
-        const { lnMock, lnEthVault, lnONFT, lnOwner, minGas, chainIdEth } =
-            await loadFixture(register);
+        const {
+            lnMock,
+            lnEthVault,
+            lnONFT,
+            lnOwner,
+            minGas,
+            chainIdEth,
+            chainIdCanto,
+            lzEndpointMockETH,
+        } = await loadFixture(register);
         const tokenId = 1;
-        const gasLimit = await lnEthVault.minDstGasLookup(chainIdEth, 1);
         const defaultAdapterParams = ethers.utils.solidityPack(
             ['uint16', 'uint256'],
-            [1, gasLimit],
+            [1, 250000],
         );
         // estimate nativeFees
         const nativeFee = (
@@ -28,7 +35,7 @@ describe('e2e tests', () => {
 
         expect(await lnMock.ownerOf(tokenId)).to.equal(lnOwner.address);
         await lnMock.connect(lnOwner).approve(lnEthVault.address, tokenId);
-        expect(
+        await expect(
             await lnEthVault
                 .connect(lnOwner)
                 .sendToEth(
@@ -41,8 +48,24 @@ describe('e2e tests', () => {
                         value: nativeFee,
                     },
                 ),
-        ).to.emit(lnEthVault, 'SendToEth');
+        ).to.emit(lnONFT, 'ReceiveFromChain');
         expect(await lnMock.ownerOf(tokenId)).to.equal(lnEthVault.address);
+        expect(await lnONFT.totalSupply()).to.equal(1);
         expect(await lnONFT.ownerOf(tokenId)).to.equal(lnOwner.address);
+
+        await expect(
+            await lnONFT
+                .connect(lnOwner)
+                .sendFrom(
+                    lnOwner.address,
+                    chainIdCanto,
+                    lnOwner.address,
+                    tokenId,
+                    lnOwner.address,
+                    ethers.constants.AddressZero,
+                    defaultAdapterParams,
+                    { value: nativeFee },
+                ),
+        ).to.emit(lnEthVault, 'ReceiveFromEth');
     });
 });
