@@ -1,6 +1,10 @@
 import { ethers } from 'hardhat';
 import { BigNumberish, utils } from 'ethers';
-import { ERC721Mock, LZEndpointMock, LongNecksEthVault } from '../typechain';
+import {
+    ERC721Mock,
+    LZEndpointMock,
+    LongOmnichainNeckGate,
+} from '../typechain';
 export function BN(n: BigNumberish) {
     return ethers.BigNumber.from(n.toString());
 }
@@ -47,7 +51,6 @@ async function registerErc721Mock(
 
 async function registerLNONFT(
     lzEndpointAddr: string,
-    cantoChainId: BigNumberish,
     baseUri: string,
     minGas: BigNumberish,
     owner: string,
@@ -58,7 +61,6 @@ async function registerLNONFT(
             await ethers.getContractFactory('LongNecksONFT')
         ).deploy(
             lzEndpointAddr,
-            cantoChainId,
             baseUri,
             minGas,
             royalitiesReceiver.address,
@@ -68,19 +70,20 @@ async function registerLNONFT(
     return { lnONFT, royalitiesReceiver };
 }
 
-async function registerLNEthVault(
+async function registerlnGate(
     lnNFTAddr: string,
     lnONFTAddr: string,
     lzEndpointAddr: string,
     minGas: BigNumberish,
     chainIdEth: BigNumberish,
 ) {
-    const lnEthVault = (await (
+    const lnGate = (await (
         await (
-            await ethers.getContractFactory('LongNecksEthVault')
-        ).deploy(lnNFTAddr, lzEndpointAddr, minGas, chainIdEth, lnONFTAddr)
-    ).deployed()) as LongNecksEthVault;
-    return { lnEthVault };
+            await ethers.getContractFactory('LongOmnichainNeckGate')
+        ).deploy(lnNFTAddr, lzEndpointAddr, minGas)
+    ).deployed()) as LongOmnichainNeckGate;
+    await (await lnGate.setTrustedRemoteAddress(chainIdEth, lnONFTAddr)).wait();
+    return { lnGate };
 }
 const log = (message: string, staging?: boolean) =>
     staging && console.log(message);
@@ -118,14 +121,13 @@ export async function register(staging?: boolean) {
     log('Deploying LongNecksONFT ETH Mock', staging);
     const { lnONFT: lnONFT, royalitiesReceiver } = await registerLNONFT(
         lzEndpointMockETH.address,
-        chainIdCanto,
         'https://ipfs.io/ipfs/',
         minGas,
         deployer.address,
     );
 
-    log('Deploying LongNecksEthVault', staging);
-    const { lnEthVault } = await registerLNEthVault(
+    log('Deploying LongOmnichainNeckGate', staging);
+    const { lnGate } = await registerlnGate(
         lnMock.address,
         lnONFT.address,
         lzEndpointMockCanto.address,
@@ -134,9 +136,9 @@ export async function register(staging?: boolean) {
     );
 
     await (
-        await lnONFT.setTrustedRemoteAddress(chainIdCanto, lnEthVault.address)
+        await lnONFT.setTrustedRemoteAddress(chainIdCanto, lnGate.address)
     ).wait();
-    await (await lnEthVault.setMinDstGas(chainIdEth, 1, minGas)).wait();
+    await (await lnGate.setMinDstGas(chainIdEth, 1, minGas)).wait();
     await (await lnONFT.setMinDstGas(chainIdCanto, 1, minGas)).wait();
 
     log('Connecting LayerZero Endpoints', staging);
@@ -148,7 +150,7 @@ export async function register(staging?: boolean) {
     ).wait();
     await (
         await lzEndpointMockETH.setDestLzEndpoint(
-            lnEthVault.address,
+            lnGate.address,
             lzEndpointMockCanto.address,
         )
     ).wait();
@@ -164,7 +166,7 @@ export async function register(staging?: boolean) {
         lnOwner,
         lnONFT,
         royalitiesReceiver,
-        lnEthVault,
+        lnGate,
     };
     return { ...initialSetup };
 }
