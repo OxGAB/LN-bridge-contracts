@@ -10,6 +10,7 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
+    "@layerzerolabs/lz-definitions": "^1.5.13",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
@@ -33,6 +34,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "ethereum-waffle": "^4.0.10",
     "ethers": "^5.7.2",
+    "fs": "^0.0.1-security",
     "hardhat": "^2.14.0",
     "hardhat-contract-sizer": "^2.9.0",
     "hardhat-deploy": "^0.11.29",
