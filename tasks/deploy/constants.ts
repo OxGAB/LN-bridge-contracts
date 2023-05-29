@@ -58,10 +58,10 @@ export const LZ_OPTIONS: {
 };
 export const CANTO_LONG_NECKS_ADDRESS =
     '0xC0C73CcFEE66eb400acCee23Fe70369186e4D3C9';
-export type ContractName = 'LongNecksONFT' | 'LongNecksGate';
 export type Contract = {
-    [name in ContractName]: {
+    [name: string]: {
         address: string;
+        deploymentTxHash: string;
         constructorArgs:
             | Parameters<LongOmnichainNeckGate__factory['deploy']>
             | Parameters<LongNecksONFT__factory['deploy']>;

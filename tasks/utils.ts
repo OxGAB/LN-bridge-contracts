@@ -16,11 +16,11 @@ export const readFromJson = (filename: string) => {
     }
     return {};
 };
-export const readTOFDeployments = (): Deployment => {
+export const readDeployments = (): Deployment => {
     return readFromJson('deployments.json');
 };
 
-export const saveTOFDeployment = (chainId: ChainID, contracts: Contract[]) => {
+export const saveDeployment = (chainId: ChainID, contracts: Contract[]) => {
     const deployments: Deployment = {
         ...readFromJson('deployments.json'),
     };
