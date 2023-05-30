@@ -1,22 +1,13 @@
-import { loadFixture, time } from '@nomicfoundation/hardhat-network-helpers';
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
-import { BigNumber, BigNumberish } from 'ethers';
 import { ethers } from 'hardhat';
-import { BN, register } from './test.utils';
+import { register } from './test.utils';
 
 // TODO: test on forked chain
 describe('e2e tests', () => {
-    it('Should bridge nft from canto to eth', async () => {
-        const {
-            lnMock,
-            lnGate,
-            lnONFT,
-            lnOwner,
-            minGas,
-            chainIdEth,
-            chainIdCanto,
-            lzEndpointMockETH,
-        } = await loadFixture(register);
+    it('Should bridge nft from canto to eth and back', async () => {
+        const { lnMock, lnGate, lnONFT, lnOwner, chainIdEth, chainIdCanto } =
+            await loadFixture(register);
         const tokenId = 1;
         const defaultAdapterParams = ethers.utils.solidityPack(
             ['uint16', 'uint256'],
@@ -69,5 +60,7 @@ describe('e2e tests', () => {
                     { value: nativeFee },
                 ),
         ).to.emit(lnGate, 'ReceiveFromChain');
+        expect(await lnMock.ownerOf(tokenId)).to.equal(lnOwner.address);
+        expect(await lnONFT.totalSupply()).to.equal(0);
     });
 });
