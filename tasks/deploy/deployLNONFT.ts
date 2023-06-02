@@ -7,7 +7,7 @@ import {
     LONG_NECKS_OWNER_ADDRESS,
 } from './constants';
 import { saveDeployment } from '../utils';
-export const deployLNGate__task = async (
+export const deployLNONFT__task = async (
     args: any,
     hre: HardhatRuntimeEnvironment,
 ) => {

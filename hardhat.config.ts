@@ -10,10 +10,12 @@ import '@primitivefi/hardhat-dodoc';
 
 import '@nomicfoundation/hardhat-toolbox';
 import { deployLNGate__task } from './tasks/deploy/deployLNGate';
+import { deployLNONFT__task } from './tasks/deploy/deployLNONFT';
 dotenv.config();
 task('deployLNGate', 'Deploy LongNecksGate contract').setAction(
     deployLNGate__task,
 );
+task('deployLNONFT', 'Deploy an ONFT contract').setAction(deployLNONFT__task);
 const config: HardhatUserConfig = {
     solidity: '0.8.20',
     defaultNetwork: 'hardhat',
