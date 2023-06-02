@@ -476,7 +476,7 @@ function renounceOwnership() external nonpayable
 ### rescueToken
 
 ```solidity
-function rescueToken(uint16 _srcChainId, uint256 _tokenId, address _toAddress) external nonpayable
+function rescueToken(uint256 _tokenId, address _toAddress) external nonpayable
 ```
 
 
@@ -487,7 +487,6 @@ function rescueToken(uint16 _srcChainId, uint256 _tokenId, address _toAddress) e
 
 | Name | Type | Description |
 |---|---|---|
-| _srcChainId | uint16 | undefined |
 | _tokenId | uint256 | undefined |
 | _toAddress | address | undefined |
 

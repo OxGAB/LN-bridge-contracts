@@ -30,11 +30,10 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
     }
 
     function rescueToken(
-        uint16 _srcChainId,
         uint256 _tokenId,
         address _toAddress
     ) public onlyOwner {
-        _creditTo(_srcChainId, _toAddress, _tokenId);
+        _creditTo(0, _toAddress, _tokenId);
         emit LongOmnichainNeckGate__RescuedToken(_tokenId, _toAddress);
     }
 
