@@ -1,16 +1,19 @@
 import * as dotenv from 'dotenv';
 import '@nomicfoundation/hardhat-toolbox';
 import '@nomicfoundation/hardhat-chai-matchers';
-import { HardhatUserConfig } from 'hardhat/config';
+import { HardhatUserConfig, task } from 'hardhat/config';
 import 'hardhat-deploy';
 import 'hardhat-contract-sizer';
 import 'hardhat-gas-reporter';
 import 'hardhat-tracer';
 import '@primitivefi/hardhat-dodoc';
 
-dotenv.config();
 import '@nomicfoundation/hardhat-toolbox';
-
+import { deployLNGate__task } from './tasks/deploy/deployLNGate';
+dotenv.config();
+task('deployLNGate', 'Deploy LongNecksGate contract').setAction(
+    deployLNGate__task,
+);
 const config: HardhatUserConfig = {
     solidity: '0.8.20',
     defaultNetwork: 'hardhat',
