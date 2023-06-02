@@ -58,6 +58,11 @@ export const LZ_OPTIONS: {
 };
 export const CANTO_LONG_NECKS_ADDRESS =
     '0xC0C73CcFEE66eb400acCee23Fe70369186e4D3C9';
+export const LONG_NECKS_ROYALITY_RECEPIENT_ADDRESS =
+    '0x745169C52E6185736393B1CbEfE9D96DFeEB0485';
+export const LONG_NECKS_BASE_URI = 'ipfs://longnecks.art/api/';
+export const LONG_NECKS_OWNER_ADDRESS =
+    '0x745169C52E6185736393B1CbEfE9D96DFeEB0485';
 export type Contract = {
     [name: string]: {
         address: string;
