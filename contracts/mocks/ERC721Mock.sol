@@ -11,7 +11,11 @@ contract ERC721Mock is ERC721 {
         string memory _symbol
     ) ERC721(_name, _symbol) {}
 
-    string public baseTokenURI;
+    string private baseURI;
+
+    function setBaseURI(string memory __baseURI) external {
+        baseURI = __baseURI;
+    }
 
     function mint(address to, uint tokenId) public {
         _safeMint(to, tokenId, "");
@@ -26,5 +30,9 @@ contract ERC721Mock is ERC721 {
         uint tokenId
     ) public view virtual returns (bool) {
         return _isApprovedOrOwner(spender, tokenId);
+    }
+
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
 }
