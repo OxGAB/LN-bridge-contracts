@@ -43,6 +43,14 @@ const config: HardhatUserConfig = {
             url: 'https://canto.gravitychain.io/',
             accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],
         },
+        goerli: {
+            url: 'https://eth-goerli.g.alchemy.com/v2/y3AHtuPXeT_xBBkIgiRKczs2sTAVjCid',
+            accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],
+        },
+        canto_testnet: {
+            url: 'https://canto-testnet.plexnode.wtf/',
+            accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],
+        },
     },
     etherscan: {
         apiKey: process.env.ETHERSCAN_API_KEY,
