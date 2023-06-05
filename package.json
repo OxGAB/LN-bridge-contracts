@@ -1,5 +1,5 @@
 {
-  "name": "LN-bridge-contracts",
+  "name": "ln-bridge-contracts",
   "version": "1.0.0",
   "description": "Smart Contracts for Canto's leading NFT collection, Long Necks, bridge to Ethereum.",
   "main": "hardhat.config.ts",
@@ -21,6 +21,7 @@
     "@typechain/ethers-v5": "^11.0.0",
     "@typechain/hardhat": "^7.0.0",
     "@types/chai": "^4.3.5",
+    "@types/inquirer": "^9.0.3",
     "@types/lodash": "^4.14.194",
     "@types/mocha": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
@@ -40,6 +41,7 @@
     "hardhat-gas-reporter": "^1.0.9",
     "hardhat-tracer": "^2.3.2",
     "husky": "^8.0.3",
+    "inquirer": "^9.2.7",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
     "operator-filter-registry": "^1.4.1",
