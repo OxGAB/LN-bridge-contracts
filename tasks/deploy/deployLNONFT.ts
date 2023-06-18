@@ -16,6 +16,7 @@ export const deployLNONFT__task = async (
         hre.network.name as string
     ).toUpperCase() as keyof typeof ChainID;
     const chainID = ChainID[chainName] as keyof typeof LZ_OPTIONS;
+    console.log(`Deploying Long Necks ONFT on ${chainName}`);
     const lnONFTFactory = await ethers.getContractFactory('LongNecksONFT');
     const lnONFT = await lnONFTFactory.deploy(
         LZ_OPTIONS[chainID]!.lzEndpointAddr,
@@ -40,4 +41,6 @@ export const deployLNONFT__task = async (
             },
         },
     ]);
+    console.log(`Long Necks ONFT deployed at ${lnONFT.address}`);
+    console.log('Deployment saved');
 };
