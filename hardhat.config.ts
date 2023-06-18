@@ -11,13 +11,29 @@ import '@primitivefi/hardhat-dodoc';
 import '@nomicfoundation/hardhat-toolbox';
 import { deployLNGate__task } from './tasks/deploy/deployLNGate';
 import { deployLNONFT__task } from './tasks/deploy/deployLNONFT';
+import { setTrustedRemotes__task } from './tasks/execs/setTrustedRemote';
 dotenv.config();
 task('deployLNGate', 'Deploy LongNecksGate contract').setAction(
     deployLNGate__task,
 );
 task('deployLNONFT', 'Deploy an ONFT contract').setAction(deployLNONFT__task);
+task('setTrustedRemotes', 'Set trusted remotes for contract on a certain chain')
+    .setAction(setTrustedRemotes__task)
+    .addParam('remotes', 'The remotes to set');
 const config: HardhatUserConfig = {
-    solidity: '0.8.20',
+    solidity: {
+        compilers: [
+            {
+                version: '0.8.19',
+                settings: {
+                    optimizer: {
+                        enabled: true,
+                        runs: 400,
+                    },
+                },
+            },
+        ],
+    },
     defaultNetwork: 'hardhat',
     networks: {
         hardhat: {
