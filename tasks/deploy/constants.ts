@@ -38,23 +38,23 @@ export const LZ_OPTIONS: {
     [ChainID.MAINNET]: {
         lzChainId: '101',
         lzEndpointAddr: '0x66A71Dcef29A0fFBDBE3c6a460a3B5BC225Cd675',
-        minGas: '0',
+        minGas: '1',
     },
     [ChainID.CANTO]: {
         lzChainId: '159',
         lzEndpointAddr: '0x9740FF91F1985D8d2B71494aE1A2f723bb3Ed9E4',
-        minGas: '0',
+        minGas: '1',
     },
     // Testnet
     [ChainID.GOERLI]: {
         lzChainId: '10121',
         lzEndpointAddr: '0xbfD2135BFfbb0B5378b56643c2Df8a87552Bfa23',
-        minGas: '0',
+        minGas: '1',
     },
     [ChainID.CANTO_TESTNET]: {
         lzChainId: '10159',
         lzEndpointAddr: '0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1',
-        minGas: '0',
+        minGas: '1',
     },
 };
 export const CANTO_LONG_NECKS_ADDRESS =
