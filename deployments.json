@@ -1,0 +1,40 @@
+{
+  "5": [
+    {
+      "LongNecksONFT": {
+        "address": "0xF0de72bF0B4d6e65A8f0cca1798A8C4F740AD838",
+        "deploymentTxHash": "0x5f76b263fe467c0a09c257e51185519bb401a6855dd0dac311a486d2feea4814",
+        "constructorArgs": [
+          "0xbfD2135BFfbb0B5378b56643c2Df8a87552Bfa23",
+          "https://bafybeifphztvxclsq4crwevelzlpbrsueuntiscfe5f5v3xpdny3y5h3yu.ipfs.nftstorage.link/",
+          "1",
+          "0x745169C52E6185736393B1CbEfE9D96DFeEB0485",
+          "0x745169C52E6185736393B1CbEfE9D96DFeEB0485"
+        ]
+      }
+    }
+  ],
+  "7701": [
+    {
+      "ERC721Mock": {
+        "address": "0xF0de72bF0B4d6e65A8f0cca1798A8C4F740AD838",
+        "deploymentTxHash": "0x27a2dcf8e6535016302b090f4cafea7a44b4898b57296b9c17ea3cde2855afa8",
+        "constructorArgs": [
+          "Long Necks",
+          "LN"
+        ]
+      }
+    },
+    {
+      "LongNecksGate": {
+        "address": "0xD80E54cECDC5154Cbd2930a8DE8179BA1489D214",
+        "deploymentTxHash": "0xf77bdba7f685c0f81b6b64ce522248a4b5f72988eef3cb41dc20f5f44550fe55",
+        "constructorArgs": [
+          "0xC0C73CcFEE66eb400acCee23Fe70369186e4D3C9",
+          "0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1",
+          "1"
+        ]
+      }
+    }
+  ]
+}
