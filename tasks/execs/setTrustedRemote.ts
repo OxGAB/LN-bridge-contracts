@@ -1,12 +1,6 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
-import {
-    CANTO_LONG_NECKS_ADDRESS,
-    LZ_OPTIONS,
-    ChainID,
-    LONG_NECKS_BASE_URI,
-} from '../deploy/constants';
-import { readDeployments, saveDeployment } from '../utils';
-import inquirer from 'inquirer';
+import { LZ_OPTIONS, ChainID } from '../deploy/constants';
+import { getLzOptionsByChainName, readDeployments } from '../utils';
 import { LzApp, LzApp__factory } from '../../typechain';
 export const setTrustedRemotes__task = async (
     args: {
@@ -21,9 +15,13 @@ export const setTrustedRemotes__task = async (
     ).toUpperCase() as keyof typeof ChainID;
     const chainID = ChainID[chainName] as keyof typeof LZ_OPTIONS;
     const remotes = args.remotes.split(',').reduce((acc, x) => {
-        const [chainID, addressesRaw] = x.split(':');
+        const [chainName, addressesRaw] = x.split(':');
         const addresses = addressesRaw.split('_');
-        acc[chainID] = addresses;
+        const lzChainID = getLzOptionsByChainName(chainName)?.lzChainId ?? '0';
+        if (lzChainID === '0') {
+            throw new Error(`LayerZero Chain ID not found for ${chainName}`);
+        }
+        acc[lzChainID] = addresses;
         return acc;
     }, {} as Record<string, string[]>);
     const chainIDs = Object.keys(remotes);
@@ -35,10 +33,10 @@ export const setTrustedRemotes__task = async (
     );
     const deployment = readDeployments()[chainID].find(
         (x) => x['LongNecksONFT'] || x['LongNecksGate'],
-    ) ?? { ERC721Mock: { address: '' } };
+    ) ?? { ERC721Mock: { address: '0x' } };
     const contractAddress: string =
     (
-            // @ts-ignore
+        // @ts-ignore
             deployment['LongNecksONFT'] ??
             // @ts-ignore
             deployment['LongNecksGate']
@@ -56,7 +54,10 @@ export const setTrustedRemotes__task = async (
         const addresses = remotes[_chainId];
         for (let j = 0; j < addresses.length; j++) {
             const address = addresses[j];
-            const tx = await contract.setTrustedRemote(_chainId, address);
+            const tx = await contract.setTrustedRemoteAddress(
+                _chainId,
+                address,
+            );
             await tx.wait();
             console.log(
                 `Set trusted remote ${j + 1}/${iterations} for ${chainName}`,
