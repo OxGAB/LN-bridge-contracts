@@ -28,12 +28,12 @@ task('mintLN', 'Mint Long Necks')
     .addOptionalParam('number', 'The number of Long Necks to mint')
     .addOptionalParam('to', 'The address to mint to');
 task('sendFrom', 'Send Long Necks from one chain to another')
-    .addParam('dstchainid', 'The destination chain ID')
+    .addParam('dstchain', 'The destination chain name')
     .addOptionalParam('to', 'The address to send to')
     .addOptionalParam('tokenids', 'The token IDs to send')
     .setAction(sendFrom__task);
 task('setPacketType', 'Set packet type for a chain')
-    .addParam('chainids', 'The chain IDs to set')
+    .addParam('chainnames', 'The chain names to set')
     .setAction(setPacketType__task);
 const config: HardhatUserConfig = {
     solidity: {
