@@ -41,7 +41,7 @@
     "hardhat-gas-reporter": "^1.0.9",
     "hardhat-tracer": "^2.3.2",
     "husky": "^8.0.3",
-    "inquirer": "^9.2.7",
+    "inquirer": "8.2.5",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
     "operator-filter-registry": "^1.4.1",
@@ -52,5 +52,8 @@
     "ts-node": "^10.9.1",
     "typechain": "^8.2.0",
     "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "hardhat-abi-exporter": "^2.10.1"
   }
 }

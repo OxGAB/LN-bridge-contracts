@@ -7,7 +7,7 @@ import 'hardhat-contract-sizer';
 import 'hardhat-gas-reporter';
 import 'hardhat-tracer';
 import '@primitivefi/hardhat-dodoc';
-
+import 'hardhat-abi-exporter';
 import '@nomicfoundation/hardhat-toolbox';
 import { deployLNGate__task } from './tasks/deploy/deployLNGate';
 import { deployLNONFT__task } from './tasks/deploy/deployLNONFT';
