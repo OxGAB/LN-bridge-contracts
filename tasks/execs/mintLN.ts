@@ -4,7 +4,8 @@ import { readDeployments } from '../utils';
 import { ERC721Mock, ERC721Mock__factory } from '../../typechain';
 export const mintLN__task = async (
     args: {
-        number?: string;
+        start?: string;
+        end?: string;
         to?: string;
     },
     hre: HardhatRuntimeEnvironment,
@@ -21,7 +22,8 @@ export const mintLN__task = async (
     ) {
         throw new Error('Long Necks can only be minted on the Canto network');
     }
-    const number = isNaN(Number(args.number)) ? 1 : Number(args.number);
+    const start = isNaN(Number(args.start)) ? 1 : Number(args.start);
+    const end = isNaN(Number(args.end)) ? 1 : Number(args.end);
     const to = args.to ?? signer.address;
     const deployment = readDeployments()[chainID].find(
         (x) => x['ERC721Mock'],
@@ -35,8 +37,8 @@ export const mintLN__task = async (
         ERC721Mock__factory.abi,
         signer,
     ) as ERC721Mock;
-    console.log(`Minting ${number} Long Necks to ${to}...`);
-    for (let i = 0; i < number; i++) {
+    console.log(`Minting ${end - start} Long Necks to ${to}...`);
+    for (let i = start; i < end; i++) {
         const tx = await longNecks.mint(to, i);
         await tx.wait();
         console.log(`Minted Long Neck #${i} to ${to}`);

@@ -25,7 +25,8 @@ task('setTrustedRemotes', 'Set trusted remotes for contract on a certain chain')
     .addParam('remotes', 'The remotes to set');
 task('mintLN', 'Mint Long Necks')
     .setAction(mintLN__task)
-    .addOptionalParam('number', 'The number of Long Necks to mint')
+    .addOptionalParam('start', 'The TokenID to start minting at')
+    .addOptionalParam('end', 'The TokenID to stop minting at')
     .addOptionalParam('to', 'The address to mint to');
 task('sendFrom', 'Send Long Necks from one chain to another')
     .addParam('dstchain', 'The destination chain name')
@@ -39,7 +40,7 @@ const config: HardhatUserConfig = {
     solidity: {
         compilers: [
             {
-                version: '0.8.19',
+                version: '0.8.20',
                 settings: {
                     optimizer: {
                         enabled: true,
