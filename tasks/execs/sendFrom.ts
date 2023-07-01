@@ -53,14 +53,14 @@ export const sendFrom__task = async (
         ONFT721Core__factory.abi,
         signer,
     ) as ONFT721Core;
-    // await approveLongNecks(
-    //     chainName,
-    //     contractAddress,
-    //     tokenIds,
-    //     signer,
-    //     hre,
-    //     chainID,
-    // );
+    await approveLongNecks(
+        chainName,
+        contractAddress,
+        tokenIds,
+        signer,
+        hre,
+        chainID,
+    );
     const defaultAdapterParams = ethers.utils.solidityPack(
         ['uint16', 'uint256'],
         [1, 250000],
@@ -145,6 +145,9 @@ async function approveLongNecks(
         ) as ERC721;
     }
     for (const tokenId of tokenIds) {
-        await (await longNecks.approve(address, tokenId)).wait();
+        if (!(await longNecks.isApprovedForAll(signer.address, address)))
+            (await longNecks.approve(address, tokenId)).wait().then(() => {
+                console.log(`Approved Long Neck #${tokenId} for ${address}`);
+            });
     }
 }
