@@ -31,7 +31,8 @@ export const sendFrom__task = async (
     const chainID = ChainID[chainName] as keyof typeof LZ_OPTIONS;
     const tokenIds = (args.tokenids ?? '1').split(',').map((x) => Number(x));
     const to = args.to ?? signer.address;
-    const lzChainID = getLzOptionsByChainName(args.dstchain)?.lzChainId ?? '0';
+    const lzChainID =
+        getLzOptionsByChainName(args.dstchain.toUpperCase())?.lzChainId ?? '0';
     if (lzChainID === '0') {
         throw new Error(`LayerZero Chain ID not found for ${args.dstchain}`);
     }
@@ -40,7 +41,7 @@ export const sendFrom__task = async (
     ) ?? { ERC721Mock: { address: '0x' } };
     const contractAddress: string =
     (
-        // @ts-ignore
+            // @ts-ignore
             deployment['LongNecksONFT'] ??
             // @ts-ignore
             deployment['LongNecksGate']
@@ -53,14 +54,18 @@ export const sendFrom__task = async (
         ONFT721Core__factory.abi,
         signer,
     ) as ONFT721Core;
-    await approveLongNecks(
-        chainName,
-        contractAddress,
-        tokenIds,
-        signer,
-        hre,
-        chainID,
-    );
+    if (
+        chainName.toLocaleLowerCase() === 'canto' ||
+        chainName.toLocaleLowerCase() === 'canto_testnet'
+    )
+        await approveLongNecks(
+            chainName,
+            contractAddress,
+            tokenIds,
+            signer,
+            hre,
+            chainID,
+        );
     const defaultAdapterParams = ethers.utils.solidityPack(
         ['uint16', 'uint256'],
         [1, 250000],
