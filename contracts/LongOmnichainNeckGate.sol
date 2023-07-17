@@ -55,6 +55,9 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
         bytes memory,
         uint _tokenId
     ) internal virtual override {
+        if (_from != msg.sender) {
+            revert LongOmnichainNeckGate__NotOwner();
+        }        
         (bool success, ) = address(LongNecksNFT).call(
             abi.encodeWithSelector(
                 LongNecksNFT.transferFrom.selector,
