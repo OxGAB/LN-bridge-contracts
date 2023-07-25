@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.18;
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
 import {ONFT721} from "./token/onft/ONFT721.sol";
 import {DefaultOperatorFilterer} from "operator-filter-registry/src/DefaultOperatorFilterer.sol";
-
 
 contract LongNecksONFT is DefaultOperatorFilterer, ONFT721, ERC2981 {
     uint96 public constant ROYALTY_FEE = 500; // 5% of every sale

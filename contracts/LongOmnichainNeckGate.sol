@@ -1,4 +1,4 @@
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.18;
 // SPDX-License-Identifier: UNLICENSED
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -57,7 +57,7 @@ contract LongOmnichainNeckGate is Ownable, ONFT721Core {
     ) internal virtual override {
         if (_from != msg.sender) {
             revert LongOmnichainNeckGate__NotOwner();
-        }        
+        }
         (bool success, ) = address(LongNecksNFT).call(
             abi.encodeWithSelector(
                 LongNecksNFT.transferFrom.selector,
