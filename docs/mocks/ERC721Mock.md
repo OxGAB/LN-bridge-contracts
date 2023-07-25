@@ -49,23 +49,6 @@ function balanceOf(address owner) external view returns (uint256)
 |---|---|---|
 | _0 | uint256 | undefined |
 
-### baseTokenURI
-
-```solidity
-function baseTokenURI() external view returns (string)
-```
-
-
-
-
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | string | undefined |
-
 ### getApproved
 
 ```solidity
@@ -243,6 +226,22 @@ function setApprovalForAll(address operator, bool approved) external nonpayable
 |---|---|---|
 | operator | address | undefined |
 | approved | bool | undefined |
+
+### setBaseURI
+
+```solidity
+function setBaseURI(string __baseURI) external nonpayable
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| __baseURI | string | undefined |
 
 ### supportsInterface
 

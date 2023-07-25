@@ -35,8 +35,8 @@ export const setTrustedRemotes__task = async (
         (x) => x['LongNecksONFT'] || x['LongNecksGate'],
     ) ?? { ERC721Mock: { address: '0x' } };
     const contractAddress: string =
-    (
         // @ts-ignore
+        (
             deployment['LongNecksONFT'] ??
             // @ts-ignore
             deployment['LongNecksGate']
