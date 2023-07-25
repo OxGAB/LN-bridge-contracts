@@ -64,7 +64,7 @@ export const LONG_NECKS_BASE_URI =
 export const LONG_NECKS_ROYALITY_RECEPIENT_ADDRESS =
     '0x745169C52E6185736393B1CbEfE9D96DFeEB0485';
 export const LONG_NECKS_OWNER_ADDRESS =
-    '0x745169C52E6185736393B1CbEfE9D96DFeEB0485';
+    '0xEAF9f533871B07B151883908B4Fb6eeF4b51A95F'; // TO Change
 export type Contract = {
     [name: string]: {
         address: string;

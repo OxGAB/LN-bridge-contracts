@@ -44,10 +44,7 @@ export const setBatchLimit__task = async (
     ) as ONFT721Core;
     for (let i = 0; i < lzChainIDs.length; i++) {
         const _chainId = lzChainIDs[i];
-        const tx = await contract.setDstChainIdToBatchLimit(
-            _chainId,
-            constants.MaxUint256,
-        );
+        const tx = await contract.setDstChainIdToBatchLimit(_chainId, 42);
         await tx.wait();
         console.log(
             `Set min gas ${i + 1}/${lzChainIDs.length} for ${chainName}`,

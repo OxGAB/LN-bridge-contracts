@@ -28,7 +28,10 @@ export const deployLNGate__task = async (
     let longNecksAddr = CANTO_LONG_NECKS_ADDRESS;
     console.log('Deploying Long Necks Gate');
 
-    if (chainName.toLowerCase() === 'canto_testnet') {
+    if (
+        chainName.toLowerCase() === 'canto_testnet' ||
+        chainName.toLowerCase() === 'canto'
+    ) {
         if (
             (
                 await inquirer.prompt([
@@ -82,7 +85,7 @@ export const deployLNGate__task = async (
                 address: lnGate.address,
                 deploymentTxHash: deployTx.transactionHash,
                 constructorArgs: [
-                    CANTO_LONG_NECKS_ADDRESS,
+                    longNecksAddr,
                     LZ_OPTIONS[chainID]!.lzEndpointAddr,
                     LZ_OPTIONS[chainID]!.minGas,
                 ],
