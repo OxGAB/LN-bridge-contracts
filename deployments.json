@@ -2,8 +2,8 @@
   "5": [
     {
       "LongNecksONFT": {
-        "address": "0xB7AE359b750E0a318E26254D1bc5b536Cb860977",
-        "deploymentTxHash": "0x6da0a68d0674efabfd3cba48be2b89904704fba653fbf4344323fcb570099158",
+        "address": "0xB2b51319e61b9293B3C9168D77ef521fe1488875",
+        "deploymentTxHash": "0x3ddf43f14ac8ba59834c79fd830d4aa556fc3ac7db0af87c3dca1a4b8f353962",
         "constructorArgs": [
           "0xbfD2135BFfbb0B5378b56643c2Df8a87552Bfa23",
           "https://bafybeifphztvxclsq4crwevelzlpbrsueuntiscfe5f5v3xpdny3y5h3yu.ipfs.nftstorage.link/",
@@ -14,11 +14,11 @@
       }
     }
   ],
-  "7700": [
+  "7701": [
     {
       "ERC721Mock": {
-        "address": "0xBaC59400ED43d56ea9b74C79D633d8FBC3FA43A4",
-        "deploymentTxHash": "0xefd22c67f573b1f1ffa129b773b82b30c195d51ae8a6548d4c0a3d501f1d7abd",
+        "address": "0x7192cb0952f550223A203634Ec0bD4332c4E64e5",
+        "deploymentTxHash": "0x216bac2a53b6542247e870ba81c221b07ae10199a248e31a6f7b717687257a52",
         "constructorArgs": [
           "Long Necks",
           "LN"
@@ -27,11 +27,11 @@
     },
     {
       "LongNecksGate": {
-        "address": "0x98550eCC6D1F3ca7B9C9984224cb9d652270D412",
-        "deploymentTxHash": "0x7e6a7614fee901c420e4a8093038fca61ed552b90cfc3e530c10044635409019",
+        "address": "0x112370861623C084FfF4d358Aa33F4B6bdcA7d4D",
+        "deploymentTxHash": "0x925e8d3cca26acd6d9c3877d766aae74d75358e59ce4cb88e87552f5420e17ea",
         "constructorArgs": [
-          "0xBaC59400ED43d56ea9b74C79D633d8FBC3FA43A4",
-          "0x9740FF91F1985D8d2B71494aE1A2f723bb3Ed9E4",
+          "0x7192cb0952f550223A203634Ec0bD4332c4E64e5",
+          "0xae92d5aD7583AD66E49A0c67BAd18F6ba52dDDc1",
           "1"
         ]
       }

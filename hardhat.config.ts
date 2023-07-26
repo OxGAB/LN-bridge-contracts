@@ -75,10 +75,6 @@ const config: HardhatUserConfig = {
             url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
             accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],
         },
-        canto: {
-            url: 'https://testnet-archive.plexnode.wtf',
-            accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],
-        },
         goerli: {
             url: 'https://eth-goerli.g.alchemy.com/v2/y3AHtuPXeT_xBBkIgiRKczs2sTAVjCid',
             accounts: [process.env.DEPLOYER_PRIVATE_KEY ?? ''],

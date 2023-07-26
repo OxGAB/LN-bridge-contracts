@@ -37,6 +37,9 @@ export const mintLN__task = async (
         ERC721Mock__factory.abi,
         signer,
     ) as ERC721Mock;
+    if (start > end) throw new Error('Start must be less than end');
+    if (end - start === 0) throw new Error('Start and end cannot be the same');
+
     console.log(`Minting ${end - start} Long Necks to ${to}...`);
     for (let i = start; i < end; i++) {
         const tx = await longNecks.mint(to, i);

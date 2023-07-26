@@ -90,6 +90,7 @@ export const sendFrom__task = async (
             { value: nativeFee },
         );
         await tx.wait();
+        console.log('Tx: ', tx.hash);
         console.log(
             `Sent Long Necks #${tokenIds} to ${to} on ${args.dstchain}`,
         );
@@ -113,6 +114,7 @@ export const sendFrom__task = async (
             { value: nativeFee },
         );
         await tx.wait();
+        console.log('Tx: ', tx.hash);
         console.log(
             `Sent Long Neck #${tokenIds[0]} to ${to} on ${args.dstchain}`,
         );
