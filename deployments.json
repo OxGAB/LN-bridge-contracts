@@ -1,4 +1,19 @@
 {
+  "1": [
+    {
+      "LongNecksONFT": {
+        "address": "0x19de553a8CfFCFF8CB49E236C1a499F9CF083b97",
+        "deploymentTxHash": "0xf441ae563cf742d672c35599364418257e6a326f19f8b4d87d56c1118f6a9ee1",
+        "constructorArgs": [
+          "0x66A71Dcef29A0fFBDBE3c6a460a3B5BC225Cd675",
+          "https://bafybeifphztvxclsq4crwevelzlpbrsueuntiscfe5f5v3xpdny3y5h3yu.ipfs.nftstorage.link/",
+          "1",
+          "0xEAF9f533871B07B151883908B4Fb6eeF4b51A95F",
+          "0xEAF9f533871B07B151883908B4Fb6eeF4b51A95F"
+        ]
+      }
+    }
+  ],
   "5": [
     {
       "LongNecksONFT": {
@@ -10,6 +25,19 @@
           "1",
           "0x745169C52E6185736393B1CbEfE9D96DFeEB0485",
           "0x745169C52E6185736393B1CbEfE9D96DFeEB0485"
+        ]
+      }
+    }
+  ],
+  "7700": [
+    {
+      "LongNecksGate": {
+        "address": "0x29CBa348D7eCB5A9f72520A22F49aDDf0739617B",
+        "deploymentTxHash": "0x9e8cb8f72edb993ce52d680c0b613b397c8be1d8867998b898a273a18ef7fb7b",
+        "constructorArgs": [
+          "0xC0C73CcFEE66eb400acCee23Fe70369186e4D3C9",
+          "0x9740FF91F1985D8d2B71494aE1A2f723bb3Ed9E4",
+          "1"
         ]
       }
     }
